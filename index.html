@@ -1210,103 +1210,322 @@
             <h1>Salman Muhammed</h1>
         </div>
 
-        <!-- Left Gate -->
-        <div class="gate gate-left" id="leftGate">
-            <svg class="gate-svg" viewBox="0 0 220 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="gateGleamLeft" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.7" />
-                        <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2" />
-                        <stop offset="100%" stop-color="#C5A059" stop-opacity="0.1" />
-                    </linearGradient>
-                </defs>
+       <!-- Left Islamic Floral Gate -->
+<div class="gate gate-left" id="leftGate">
+    <svg class="gate-svg floral-gate-svg" viewBox="0 0 220 800" preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg">
 
-                <!-- Subtle Lighting Sheen -->
-                <rect x="0" y="0" width="220" height="800" fill="url(#gateGleamLeft)" />
+        <defs>
+            <linearGradient id="leftGateBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fffcf5" stop-opacity=".97" />
+                <stop offset="50%" stop-color="#f8efe0" stop-opacity=".92" />
+                <stop offset="100%" stop-color="#efdfc6" stop-opacity=".95" />
+            </linearGradient>
 
-                <!-- Outer Frame Inset -->
-                <rect x="12" y="16" width="204" height="768" rx="2"
-                      fill="none" stroke="rgba(184, 147, 75, 0.35)" stroke-width="1" />
+            <linearGradient id="leftGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f9e3ae" />
+                <stop offset="40%" stop-color="#d4a75c" />
+                <stop offset="75%" stop-color="#a67c37" />
+                <stop offset="100%" stop-color="#eed69a" />
+            </linearGradient>
 
-                <!-- Main Royal Arch Profile -->
-                <path d="M 26,764 L 26,220 C 26,110 115,48 220,48 L 220,764 Z"
-                      fill="none" stroke="rgba(184, 147, 75, 0.75)" stroke-width="1.8" stroke-linejoin="round" />
+            <linearGradient id="leftSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".42" />
+                <stop offset="50%" stop-color="#ffffff" stop-opacity=".08" />
+                <stop offset="100%" stop-color="#d3a96b" stop-opacity=".12" />
+            </linearGradient>
 
-                <!-- Inner Arch Echo Line -->
-                <path d="M 36,754 L 36,225 C 36,125 120,64 220,64 L 220,754 Z"
-                      fill="none" stroke="rgba(184, 147, 75, 0.38)" stroke-width="1" />
+            <filter id="leftGateShadow" x="-30%" y="-20%" width="160%" height="150%">
+                <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#8e6845" flood-opacity=".18" />
+            </filter>
 
-                <!-- Minimal Horizontal Panel Lines -->
-                <line x1="36" y1="230" x2="220" y2="230" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
-                <line x1="36" y1="370" x2="220" y2="370" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
-                <line x1="36" y1="490" x2="220" y2="490" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
-                <line x1="36" y1="630" x2="220" y2="630" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
+            <!-- Subtle Islamic geometric (girih) lattice -->
+            <pattern id="leftGeo" width="56" height="56" patternUnits="userSpaceOnUse">
+                <path d="M28 4 L52 28 L28 52 L4 28 Z" fill="none" stroke="#c79a58" stroke-width=".7" opacity=".14" />
+                <path d="M28 12 L44 28 L28 44 L12 28 Z" fill="none" stroke="#c79a58" stroke-width=".5" opacity=".12" />
+                <circle cx="28" cy="28" r="2" fill="#c79a58" opacity=".14" />
+                <circle cx="0" cy="0" r="1.6" fill="#c79a58" opacity=".12" />
+                <circle cx="56" cy="56" r="1.6" fill="#c79a58" opacity=".12" />
+            </pattern>
 
-                <!-- Arch Apex Minimal Diamond Accent -->
-                <polygon points="220,110 213,120 220,130 220,120"
-                         fill="rgba(184, 147, 75, 0.65)" />
+            <!-- 8-pointed star (khatam) -->
+            <g id="leftStar">
+                <path d="M0 -15 L4 -4 L15 0 L4 4 L0 15 L-4 4 L-15 0 L-4 -4 Z" fill="#fdf6ea"
+                    stroke="url(#leftGold)" stroke-width="1.3" />
+                <rect x="-8" y="-8" width="16" height="16" transform="rotate(45)" fill="none" stroke="#b98b4c"
+                    stroke-width=".8" opacity=".8" />
+                <circle r="3" fill="#14655a" />
+                <circle r="1.2" fill="#f3d894" />
+            </g>
 
-                <!-- Center Seam Handle / Half Rosette Pull -->
-                <!-- Backplate -->
-                <path d="M 220,395 A 35,35 0 0,0 220,465 Z"
-                      fill="rgba(197, 160, 89, 0.12)" stroke="rgba(184, 147, 75, 0.5)" stroke-width="1.2" />
-                <!-- Inner Ring -->
-                <path d="M 220,410 A 20,20 0 0,0 220,450"
-                      fill="none" stroke="rgba(184, 147, 75, 0.85)" stroke-width="1.5" />
-                <!-- Vertical Handle Bar -->
-                <line x1="214" y1="365" x2="214" y2="495"
-                      stroke="rgba(184, 147, 75, 0.85)" stroke-width="2" stroke-linecap="round" />
-            </svg>
-        </div>
+            <!-- Hanging lantern (fanoos) -->
+            <g id="leftLantern">
+                <line x1="0" y1="-36" x2="0" y2="-25" stroke="#b98b4c" stroke-width="1" stroke-dasharray="2 3" />
+                <path d="M-7 -21 Q0 -31 7 -21 Z" fill="url(#leftGold)" />
+                <path d="M-9 -21 L-7 4 Q0 9 7 4 L9 -21 Z" fill="#fdf3df" stroke="url(#leftGold)" stroke-width="1.2" />
+                <path d="M-3 -20 L-2.5 4 M3 -20 L2.5 4" stroke="#d8b271" stroke-width=".7" fill="none" />
+                <circle cx="0" cy="-8" r="3" fill="#f0cf87" opacity=".9" />
+                <line x1="0" y1="9" x2="0" y2="14" stroke="#b98b4c" stroke-width="1" />
+                <circle cx="0" cy="16" r="1.8" fill="url(#leftGold)" />
+            </g>
 
-        <!-- Right Gate -->
-        <div class="gate gate-right" id="rightGate">
-            <svg class="gate-svg" viewBox="0 0 220 800" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="gateGleamRight" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.7" />
-                        <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2" />
-                        <stop offset="100%" stop-color="#C5A059" stop-opacity="0.1" />
-                    </linearGradient>
-                </defs>
+            <g id="leftLeaf">
+                <path d="M0 0 C10 -13 20 -10 24 -1 C17 8 8 9 0 0Z" fill="#7d8f6a" fill-opacity=".75"
+                    stroke="#b98b4c" stroke-width=".8" />
+                <path d="M2 0 C10 -2 16 -3 22 -2" fill="none" stroke="#dfc17f" stroke-width=".8" />
+            </g>
+        </defs>
 
-                <!-- Subtle Lighting Sheen -->
-                <rect x="0" y="0" width="220" height="800" fill="url(#gateGleamRight)" />
+        <!-- Gate body -->
+        <rect x="0" y="0" width="220" height="800" fill="url(#leftGateBg)" filter="url(#leftGateShadow)" />
+        <rect x="0" y="0" width="220" height="800" fill="url(#leftGeo)" opacity=".6" />
+        <rect x="0" y="0" width="220" height="800" fill="url(#leftSheen)" />
 
-                <!-- Outer Frame Inset -->
-                <rect x="4" y="16" width="204" height="768" rx="2"
-                      fill="none" stroke="rgba(184, 147, 75, 0.35)" stroke-width="1" />
+        <!-- Scalloped mihrab bands (top & bottom) -->
+        <path d="M14 36 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0
+                 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0"
+            fill="none" stroke="url(#leftGold)" stroke-width="1.1" opacity=".75" />
+        <line x1="22" y1="26" x2="198" y2="26" stroke="#14655a" stroke-width="2" stroke-linecap="round"
+            stroke-dasharray="0.1 16" opacity=".45" />
 
-                <!-- Main Royal Arch Profile -->
-                <path d="M 0,48 C 105,48 194,110 194,220 L 194,764 L 0,764 Z"
-                      fill="none" stroke="rgba(184, 147, 75, 0.75)" stroke-width="1.8" stroke-linejoin="round" />
+        <path d="M14 764 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0
+                 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0"
+            fill="none" stroke="url(#leftGold)" stroke-width="1.1" opacity=".75" />
+        <line x1="22" y1="774" x2="198" y2="774" stroke="#14655a" stroke-width="2" stroke-linecap="round"
+            stroke-dasharray="0.1 16" opacity=".45" />
 
-                <!-- Inner Arch Echo Line -->
-                <path d="M 0,64 C 100,64 184,125 184,225 L 184,754 L 0,754 Z"
-                      fill="none" stroke="rgba(184, 147, 75, 0.38)" stroke-width="1" />
+        <!-- Borders -->
+        <rect x="10" y="12" width="200" height="776" rx="6" fill="none" stroke="url(#leftGold)" stroke-width="1"
+            opacity=".68" />
+        <rect x="17" y="19" width="186" height="762" rx="4" fill="none" stroke="#c99c5c" stroke-width=".7"
+            opacity=".28" />
 
-                <!-- Minimal Horizontal Panel Lines -->
-                <line x1="0" y1="230" x2="184" y2="230" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
-                <line x1="0" y1="370" x2="184" y2="370" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
-                <line x1="0" y1="490" x2="184" y2="490" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
-                <line x1="0" y1="630" x2="184" y2="630" stroke="rgba(184, 147, 75, 0.25)" stroke-width="1" />
+        <!-- Pearl column down the inner edge -->
+        <line x1="211" y1="100" x2="211" y2="750" stroke="#c79a58" stroke-width="2.4" stroke-linecap="round"
+            stroke-dasharray="0.1 16" opacity=".55" />
 
-                <!-- Arch Apex Minimal Diamond Accent -->
-                <polygon points="0,110 7,120 0,130 0,120"
-                         fill="rgba(184, 147, 75, 0.65)" />
+        <!-- Pointed Moorish arches -->
+        <path d="M22 772 L22 262 C22 190 52 142 104 108 C148 80 190 62 218 54" fill="none" stroke="url(#leftGold)"
+            stroke-width="1" opacity=".5" />
+        <path d="M30 764 L30 268 C30 200 58 152 108 120 C152 92 192 74 216 66" fill="none" stroke="url(#leftGold)"
+            stroke-width="2.4" stroke-linecap="round" opacity=".9" />
+        <path d="M40 754 L40 276 C40 214 66 168 112 138 C152 112 188 96 214 88" fill="none" stroke="#bd9253"
+            stroke-width=".9" opacity=".5" />
 
-                <!-- Center Seam Handle / Half Rosette Pull -->
-                <!-- Backplate -->
-                <path d="M 0,395 A 35,35 0 0,1 0,465 Z"
-                      fill="rgba(197, 160, 89, 0.12)" stroke="rgba(184, 147, 75, 0.5)" stroke-width="1.2" />
-                <!-- Inner Ring -->
-                <path d="M 0,410 A 20,20 0 0,1 0,450"
-                      fill="none" stroke="rgba(184, 147, 75, 0.85)" stroke-width="1.5" />
-                <!-- Vertical Handle Bar -->
-                <line x1="6" y1="365" x2="6" y2="495"
-                      stroke="rgba(184, 147, 75, 0.85)" stroke-width="2" stroke-linecap="round" />
-            </svg>
-        </div>
+        <!-- Beads along the main arch -->
+        <circle cx="30" cy="268" r="2.6" fill="url(#leftGold)" />
+        <circle cx="33" cy="222" r="2.6" fill="#14655a" opacity=".8" />
+        <circle cx="40" cy="190" r="2.6" fill="url(#leftGold)" />
+        <circle cx="56" cy="160" r="2.6" fill="#14655a" opacity=".8" />
+        <circle cx="80" cy="138" r="2.6" fill="url(#leftGold)" />
+        <circle cx="108" cy="120" r="2.6" fill="#14655a" opacity=".8" />
+        <circle cx="140" cy="102" r="2.6" fill="url(#leftGold)" />
+        <circle cx="172" cy="86" r="2.6" fill="#14655a" opacity=".8" />
+        <circle cx="200" cy="74" r="2.6" fill="url(#leftGold)" />
+
+        <!-- Crescent finial at the arch apex -->
+        <g transform="translate(216 46)">
+            <path fill-rule="evenodd" fill="url(#leftGold)"
+                d="M -10 2 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 M -7.5 -1.5 a7.5 7.5 0 1 1 15 0 a7.5 7.5 0 1 1 -15 0 Z" />
+            <use href="#leftStar" transform="translate(0 -18) scale(.38)" />
+            <line x1="0" y1="12" x2="0" y2="18" stroke="#b98b4c" stroke-width="1" />
+        </g>
+
+        <!-- Hanging lantern -->
+        <use href="#leftLantern" transform="translate(132 158) scale(.9)" />
+
+        <!-- Star accents in the panel -->
+        <use href="#leftStar" transform="translate(162 250) scale(.55)" />
+        <use href="#leftStar" transform="translate(162 610) scale(.55)" />
+
+        <!-- Grand central rosette -->
+        <g transform="translate(105 430)">
+            <circle r="40" fill="#fdf6ea" fill-opacity=".55" stroke="url(#leftGold)" stroke-width="1.2" />
+            <circle r="33" fill="none" stroke="#c79a58" stroke-width=".8" stroke-dasharray="3 5" opacity=".7" />
+            <use href="#leftStar" transform="scale(1.5)" />
+            <circle cx="40" cy="0" r="2" fill="url(#leftGold)" />
+            <circle cx="28" cy="28" r="2" fill="#14655a" opacity=".8" />
+            <circle cx="0" cy="40" r="2" fill="url(#leftGold)" />
+            <circle cx="-28" cy="28" r="2" fill="#14655a" opacity=".8" />
+            <circle cx="-40" cy="0" r="2" fill="url(#leftGold)" />
+            <circle cx="-28" cy="-28" r="2" fill="#14655a" opacity=".8" />
+            <circle cx="0" cy="-40" r="2" fill="url(#leftGold)" />
+            <circle cx="28" cy="-28" r="2" fill="#14655a" opacity=".8" />
+        </g>
+
+        <!-- Lower arabesque sweep -->
+        <path d="M31 690 C54 714 73 730 101 735 C137 742 169 730 194 700" fill="none" stroke="#b88c4e"
+            stroke-width="1" opacity=".45" />
+        <use href="#leftLeaf" transform="translate(57 718) rotate(205) scale(.58)" />
+        <use href="#leftLeaf" transform="translate(83 730) rotate(32) scale(.48)" />
+        <use href="#leftLeaf" transform="translate(147 730) rotate(205) scale(.48)" />
+        <use href="#leftLeaf" transform="translate(174 716) rotate(30) scale(.58)" />
+
+        <!-- Star door pull at the meeting edge -->
+        <g transform="translate(220 430)">
+            <path d="M0 -36 C-16 -31 -27 -19 -31 0 C-27 19 -16 31 0 36" fill="#f7ecd9" fill-opacity=".8"
+                stroke="url(#leftGold)" stroke-width="1.2" />
+            <circle r="22" fill="#fff8ef" fill-opacity=".45" stroke="#c49351" stroke-width="1.1" />
+            <use href="#leftStar" transform="scale(.8)" />
+            <path d="M-5 -49 C-1 -42 1 -38 0 -31" fill="none" stroke="#b88c4e" stroke-width="1" />
+            <path d="M-5 49 C-1 42 1 38 0 31" fill="none" stroke="#b88c4e" stroke-width="1" />
+        </g>
+    </svg>
+</div>
+Right Gate
+The artwork is identical, just flipped with a mirror transform — so it stays perfectly symmetrical:
+
+<!-- Right Islamic Floral Gate -->
+<div class="gate gate-right" id="rightGate">
+    <svg class="gate-svg floral-gate-svg" viewBox="0 0 220 800" preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+            <linearGradient id="rightGateBg" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#fffcf5" stop-opacity=".97" />
+                <stop offset="50%" stop-color="#f8efe0" stop-opacity=".92" />
+                <stop offset="100%" stop-color="#efdfc6" stop-opacity=".95" />
+            </linearGradient>
+
+            <linearGradient id="rightGold" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#f9e3ae" />
+                <stop offset="40%" stop-color="#d4a75c" />
+                <stop offset="75%" stop-color="#a67c37" />
+                <stop offset="100%" stop-color="#eed69a" />
+            </linearGradient>
+
+            <linearGradient id="rightSheen" x1="100%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity=".42" />
+                <stop offset="50%" stop-color="#ffffff" stop-opacity=".08" />
+                <stop offset="100%" stop-color="#d3a96b" stop-opacity=".12" />
+            </linearGradient>
+
+            <filter id="rightGateShadow" x="-30%" y="-20%" width="160%" height="150%">
+                <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#8e6845" flood-opacity=".18" />
+            </filter>
+
+            <pattern id="rightGeo" width="56" height="56" patternUnits="userSpaceOnUse">
+                <path d="M28 4 L52 28 L28 52 L4 28 Z" fill="none" stroke="#c79a58" stroke-width=".7" opacity=".14" />
+                <path d="M28 12 L44 28 L28 44 L12 28 Z" fill="none" stroke="#c79a58" stroke-width=".5" opacity=".12" />
+                <circle cx="28" cy="28" r="2" fill="#c79a58" opacity=".14" />
+                <circle cx="0" cy="0" r="1.6" fill="#c79a58" opacity=".12" />
+                <circle cx="56" cy="56" r="1.6" fill="#c79a58" opacity=".12" />
+            </pattern>
+
+            <g id="rightStar">
+                <path d="M0 -15 L4 -4 L15 0 L4 4 L0 15 L-4 4 L-15 0 L-4 -4 Z" fill="#fdf6ea"
+                    stroke="url(#rightGold)" stroke-width="1.3" />
+                <rect x="-8" y="-8" width="16" height="16" transform="rotate(45)" fill="none" stroke="#b98b4c"
+                    stroke-width=".8" opacity=".8" />
+                <circle r="3" fill="#14655a" />
+                <circle r="1.2" fill="#f3d894" />
+            </g>
+
+            <g id="rightLantern">
+                <line x1="0" y1="-36" x2="0" y2="-25" stroke="#b98b4c" stroke-width="1" stroke-dasharray="2 3" />
+                <path d="M-7 -21 Q0 -31 7 -21 Z" fill="url(#rightGold)" />
+                <path d="M-9 -21 L-7 4 Q0 9 7 4 L9 -21 Z" fill="#fdf3df" stroke="url(#rightGold)" stroke-width="1.2" />
+                <path d="M-3 -20 L-2.5 4 M3 -20 L2.5 4" stroke="#d8b271" stroke-width=".7" fill="none" />
+                <circle cx="0" cy="-8" r="3" fill="#f0cf87" opacity=".9" />
+                <line x1="0" y1="9" x2="0" y2="14" stroke="#b98b4c" stroke-width="1" />
+                <circle cx="0" cy="16" r="1.8" fill="url(#rightGold)" />
+            </g>
+
+            <g id="rightLeaf">
+                <path d="M0 0 C10 -13 20 -10 24 -1 C17 8 8 9 0 0Z" fill="#7d8f6a" fill-opacity=".75"
+                    stroke="#b98b4c" stroke-width=".8" />
+                <path d="M2 0 C10 -2 16 -3 22 -2" fill="none" stroke="#dfc17f" stroke-width=".8" />
+            </g>
+        </defs>
+
+        <!-- Everything mirrored horizontally for perfect symmetry -->
+        <g transform="matrix(-1 0 0 1 220 0)">
+
+            <rect x="0" y="0" width="220" height="800" fill="url(#rightGateBg)" filter="url(#rightGateShadow)" />
+            <rect x="0" y="0" width="220" height="800" fill="url(#rightGeo)" opacity=".6" />
+            <rect x="0" y="0" width="220" height="800" fill="url(#rightSheen)" />
+
+            <path d="M14 36 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0
+                     q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0"
+                fill="none" stroke="url(#rightGold)" stroke-width="1.1" opacity=".75" />
+            <line x1="22" y1="26" x2="198" y2="26" stroke="#14655a" stroke-width="2" stroke-linecap="round"
+                stroke-dasharray="0.1 16" opacity=".45" />
+
+            <path d="M14 764 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0
+                     q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0 q8 -12 16 0"
+                fill="none" stroke="url(#rightGold)" stroke-width="1.1" opacity=".75" />
+            <line x1="22" y1="774" x2="198" y2="774" stroke="#14655a" stroke-width="2" stroke-linecap="round"
+                stroke-dasharray="0.1 16" opacity=".45" />
+
+            <rect x="10" y="12" width="200" height="776" rx="6" fill="none" stroke="url(#rightGold)"
+                stroke-width="1" opacity=".68" />
+            <rect x="17" y="19" width="186" height="762" rx="4" fill="none" stroke="#c99c5c" stroke-width=".7"
+                opacity=".28" />
+
+            <line x1="211" y1="100" x2="211" y2="750" stroke="#c79a58" stroke-width="2.4" stroke-linecap="round"
+                stroke-dasharray="0.1 16" opacity=".55" />
+
+            <path d="M22 772 L22 262 C22 190 52 142 104 108 C148 80 190 62 218 54" fill="none"
+                stroke="url(#rightGold)" stroke-width="1" opacity=".5" />
+            <path d="M30 764 L30 268 C30 200 58 152 108 120 C152 92 192 74 216 66" fill="none"
+                stroke="url(#rightGold)" stroke-width="2.4" stroke-linecap="round" opacity=".9" />
+            <path d="M40 754 L40 276 C40 214 66 168 112 138 C152 112 188 96 214 88" fill="none" stroke="#bd9253"
+                stroke-width=".9" opacity=".5" />
+
+            <circle cx="30" cy="268" r="2.6" fill="url(#rightGold)" />
+            <circle cx="33" cy="222" r="2.6" fill="#14655a" opacity=".8" />
+            <circle cx="40" cy="190" r="2.6" fill="url(#rightGold)" />
+            <circle cx="56" cy="160" r="2.6" fill="#14655a" opacity=".8" />
+            <circle cx="80" cy="138" r="2.6" fill="url(#rightGold)" />
+            <circle cx="108" cy="120" r="2.6" fill="#14655a" opacity=".8" />
+            <circle cx="140" cy="102" r="2.6" fill="url(#rightGold)" />
+            <circle cx="172" cy="86" r="2.6" fill="#14655a" opacity=".8" />
+            <circle cx="200" cy="74" r="2.6" fill="url(#rightGold)" />
+
+            <g transform="translate(216 46)">
+                <path fill-rule="evenodd" fill="url(#rightGold)"
+                    d="M -10 2 a10 10 0 1 0 20 0 a10 10 0 1 0 -20 0 M -7.5 -1.5 a7.5 7.5 0 1 1 15 0 a7.5 7.5 0 1 1 -15 0 Z" />
+                <use href="#rightStar" transform="translate(0 -18) scale(.38)" />
+                <line x1="0" y1="12" x2="0" y2="18" stroke="#b98b4c" stroke-width="1" />
+            </g>
+
+            <use href="#rightLantern" transform="translate(132 158) scale(.9)" />
+
+            <use href="#rightStar" transform="translate(162 250) scale(.55)" />
+            <use href="#rightStar" transform="translate(162 610) scale(.55)" />
+
+            <g transform="translate(105 430)">
+                <circle r="40" fill="#fdf6ea" fill-opacity=".55" stroke="url(#rightGold)" stroke-width="1.2" />
+                <circle r="33" fill="none" stroke="#c79a58" stroke-width=".8" stroke-dasharray="3 5" opacity=".7" />
+                <use href="#rightStar" transform="scale(1.5)" />
+                <circle cx="40" cy="0" r="2" fill="url(#rightGold)" />
+                <circle cx="28" cy="28" r="2" fill="#14655a" opacity=".8" />
+                <circle cx="0" cy="40" r="2" fill="url(#rightGold)" />
+                <circle cx="-28" cy="28" r="2" fill="#14655a" opacity=".8" />
+                <circle cx="-40" cy="0" r="2" fill="url(#rightGold)" />
+                <circle cx="-28" cy="-28" r="2" fill="#14655a" opacity=".8" />
+                <circle cx="0" cy="-40" r="2" fill="url(#rightGold)" />
+                <circle cx="28" cy="-28" r="2" fill="#14655a" opacity=".8" />
+            </g>
+
+            <path d="M31 690 C54 714 73 730 101 735 C137 742 169 730 194 700" fill="none" stroke="#b88c4e"
+                stroke-width="1" opacity=".45" />
+            <use href="#rightLeaf" transform="translate(57 718) rotate(205) scale(.58)" />
+            <use href="#rightLeaf" transform="translate(83 730) rotate(32) scale(.48)" />
+            <use href="#rightLeaf" transform="translate(147 730) rotate(205) scale(.48)" />
+            <use href="#rightLeaf" transform="translate(174 716) rotate(30) scale(.58)" />
+
+            <g transform="translate(220 430)">
+                <path d="M0 -36 C-16 -31 -27 -19 -31 0 C-27 19 -16 31 0 36" fill="#f7ecd9" fill-opacity=".8"
+                    stroke="url(#rightGold)" stroke-width="1.2" />
+                <circle r="22" fill="#fff8ef" fill-opacity=".45" stroke="#c49351" stroke-width="1.1" />
+                <use href="#rightStar" transform="scale(.8)" />
+                <path d="M-5 -49 C-1 -42 1 -38 0 -31" fill="none" stroke="#b88c4e" stroke-width="1" />
+                <path d="M-5 49 C-1 42 1 38 0 31" fill="none" stroke="#b88c4e" stroke-width="1" />
+            </g>
+        </g>
+    </svg>
+</div>
     </section>
 
     <!-- ============================================= -->
