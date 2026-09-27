@@ -520,15 +520,15 @@
 
         .scratch-card-box {
             position: relative;
-            width: clamp(280px, 86vw, 360px);
+            width: clamp(260px, 82vw, 340px);
             margin: 0 auto;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 16px 40px rgba(74, 58, 25, 0.14);
             border: 1px solid var(--border-gold);
             background: #fff;
-            aspect-ratio: 3 / 3.8;
-            touch-action: none;
+            aspect-ratio: 3 / 3.6;
+            touch-action: pan-y;
         }
 
         .scratch-date-reveal {
@@ -610,7 +610,7 @@
             z-index: 2;
             cursor: pointer;
             border-radius: 20px;
-            touch-action: none;
+            touch-action: pan-y;
         }
 
         .scratch-actions {
@@ -915,6 +915,192 @@
             color: var(--gold-deep);
             display: block;
             margin-top: 6px;
+        }
+
+        /* --- MOBILE VIEWPORT OPTIMIZATIONS --- */
+        @media (max-width: 600px) {
+            .wrapper {
+                padding: 24px 14px 24px;
+            }
+
+            .card-container, .event-card-minimal {
+                border-radius: 18px;
+                padding: 28px 16px;
+                margin-bottom: 22px;
+            }
+
+            .card-container::before {
+                top: 5px;
+                left: 5px;
+                right: 5px;
+                bottom: 5px;
+                border-radius: 14px;
+            }
+
+            .bismillah-box {
+                max-width: 380px;
+                padding: 0 12px;
+            }
+
+            .revealed-names {
+                padding: 0 12px;
+            }
+
+            .revealed-names h1 {
+                font-size: clamp(2rem, 7.8vw, 3.4rem);
+                white-space: normal;
+                word-break: break-word;
+            }
+
+            .revealed-names .ampersand {
+                font-size: clamp(1.8rem, 6vw, 2.6rem);
+            }
+
+            .host-names {
+                font-size: 1.15rem;
+                letter-spacing: 1px;
+                line-height: 1.45;
+            }
+
+            .host-residence {
+                font-size: 0.82rem;
+            }
+
+            .invitation-quote {
+                font-size: 1.12rem;
+                line-height: 1.65;
+                margin: 20px auto;
+            }
+
+            .couple-name {
+                font-size: clamp(2.1rem, 7.6vw, 2.9rem);
+                word-break: break-word;
+            }
+
+            .lineage-info {
+                font-size: 0.82rem;
+                line-height: 1.55;
+            }
+
+            .with-connector {
+                margin: 16px 0;
+            }
+
+            .with-connector span {
+                font-size: 1.3rem;
+            }
+
+            .with-connector::before,
+            .with-connector::after {
+                width: 36px;
+            }
+
+            .portrait-arch-wrapper {
+                width: clamp(190px, 62vw, 250px);
+                height: clamp(270px, 86vw, 350px);
+                margin: 22px auto 16px;
+            }
+
+            .quran-minimal {
+                padding: 10px 8px;
+                margin: 4px 0 8px;
+            }
+
+            .quran-arabic-text {
+                font-size: 1.45rem;
+                line-height: 1.7;
+            }
+
+            .quran-translation {
+                font-size: 0.95rem;
+            }
+
+            .scratch-card-section {
+                margin: 24px 0;
+            }
+
+            .section-headline {
+                font-size: 1.95rem;
+                margin-bottom: 16px;
+            }
+
+            .scratch-card-box {
+                width: clamp(250px, 78vw, 310px);
+                border-radius: 18px;
+            }
+
+            .reveal-big-number {
+                font-size: 4.4rem;
+                margin: 4px 0;
+            }
+
+            .reveal-month-year {
+                font-size: 1.05rem;
+                letter-spacing: 2px;
+            }
+
+            .reveal-venue-short {
+                font-size: 0.76rem;
+                margin-top: 10px;
+            }
+
+            .countdown-wrap {
+                margin: 24px 0 28px;
+            }
+
+            .countdown-grid {
+                gap: 8px;
+                max-width: 360px;
+            }
+
+            .countdown-cell {
+                padding: 10px 4px 8px;
+                border-radius: 12px;
+            }
+
+            .countdown-cell .digit {
+                font-size: 1.8rem;
+            }
+
+            .countdown-cell .unit {
+                font-size: 0.58rem;
+                letter-spacing: 1px;
+                margin-top: 4px;
+            }
+
+            .event-title {
+                font-size: 2.1rem;
+                margin-bottom: 14px;
+            }
+
+            .event-schedule-block {
+                padding: 14px 10px;
+                margin-bottom: 16px;
+            }
+
+            .event-date-main {
+                font-size: 1.05rem;
+            }
+
+            .venue-name-block {
+                margin: 16px 0 22px;
+            }
+
+            .venue-title {
+                font-size: 1.25rem;
+            }
+
+            .actions-stack {
+                max-width: 100%;
+                gap: 10px;
+            }
+
+            .btn-modern {
+                padding: 12px 18px;
+                font-size: 0.74rem;
+                min-height: 48px;
+                letter-spacing: 1px;
+            }
         }
     </style>
 </head>
@@ -1371,10 +1557,10 @@
             .fromTo("#namesReveal",
                 { scale: 0.6, opacity: 0 },
                 { scale: 1, opacity: 1, ease: "power1.inOut" }, 0)
-            // Golden Butterfly flutters diagonally across
+            // Golden Butterfly flutters diagonally across with a gentle left tilt at the end
             .fromTo("#goldenButterfly",
-                { x: "-45vw", y: "40vh", scale: 0.4, opacity: 0 },
-                { x: "45vw", y: "-40vh", scale: 1.3, opacity: 1, ease: "sine.inOut" }, 0);
+                { x: "-45vw", y: "40vh", scale: 0.4, rotation: 8, opacity: 0 },
+                { x: "45vw", y: "-40vh", scale: 1.3, rotation: -22, opacity: 1, ease: "sine.inOut" }, 0);
 
         // --- 3. Smooth Scroll Entrance Reveals for Other Sections ---
         gsap.utils.toArray('.gs-reveal').forEach(function (elem) {
@@ -1512,26 +1698,62 @@
                 return { x: cx - rect.left, y: cy - rect.top };
             }
 
+            let isTouchScratch = false;
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let decidedGesture = false;
+
             canvas.addEventListener('mousedown', (e) => { isScratching = true; const p = getPos(e); scratch(p.x, p.y); });
             canvas.addEventListener('mousemove', (e) => { if (isScratching) { const p = getPos(e); scratch(p.x, p.y); } });
             window.addEventListener('mouseup', () => { isScratching = false; });
 
             canvas.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                isScratching = true;
-                const p = getPos(e);
-                scratch(p.x, p.y);
-            }, { passive: false });
+                if (!e.touches || e.touches.length === 0) return;
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                decidedGesture = false;
+                isTouchScratch = false;
+            }, { passive: true });
 
             canvas.addEventListener('touchmove', (e) => {
-                e.preventDefault();
-                if (isScratching) {
+                if (revealed || !e.touches || e.touches.length === 0) return;
+                const curX = e.touches[0].clientX;
+                const curY = e.touches[0].clientY;
+                const dx = Math.abs(curX - touchStartX);
+                const dy = Math.abs(curY - touchStartY);
+
+                if (!decidedGesture) {
+                    if (dy > dx * 1.3 && dy > 8) {
+                        // User is scrolling vertically through the page
+                        decidedGesture = true;
+                        isTouchScratch = false;
+                        return;
+                    } else if (dx > 8 || dy > 8 || dx + dy > 12) {
+                        // User is intentionally scratching
+                        decidedGesture = true;
+                        isTouchScratch = true;
+                    }
+                }
+
+                if (isTouchScratch) {
+                    if (e.cancelable) e.preventDefault();
                     const p = getPos(e);
                     scratch(p.x, p.y);
                 }
             }, { passive: false });
 
-            canvas.addEventListener('touchend', () => { isScratching = false; });
+            canvas.addEventListener('touchend', (e) => {
+                if (!decidedGesture && e.changedTouches && e.changedTouches.length > 0) {
+                    const rect = canvas.getBoundingClientRect();
+                    const p = {
+                        x: e.changedTouches[0].clientX - rect.left,
+                        y: e.changedTouches[0].clientY - rect.top
+                    };
+                    scratch(p.x, p.y);
+                }
+                isTouchScratch = false;
+                decidedGesture = false;
+            }, { passive: true });
         })();
 
         // --- 5. Celebration Gold Confetti Burst ---
