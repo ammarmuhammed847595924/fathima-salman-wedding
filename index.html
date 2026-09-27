@@ -223,11 +223,12 @@
 
         .revealed-names h1 {
             font-family: var(--font-names);
-            font-size: clamp(2.6rem, 9vw, 5.2rem);
+            font-size: clamp(1.9rem, 11vw, 5.2rem);
             color: var(--gold-mid);
             text-shadow: 2px 4px 20px rgba(212, 175, 55, 0.28);
             line-height: 1.15;
             white-space: nowrap;
+            max-width: 100%;
         }
 
         .revealed-names .ampersand {
@@ -520,15 +521,24 @@
 
         .scratch-card-box {
             position: relative;
-            width: clamp(260px, 82vw, 340px);
+            width: clamp(280px, 86vw, 360px);
             margin: 0 auto;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 16px 40px rgba(74, 58, 25, 0.14);
             border: 1px solid var(--border-gold);
             background: #fff;
-            aspect-ratio: 3 / 3.6;
+            aspect-ratio: 3 / 3.8;
+            /* Allow the browser to handle vertical swipes natively (scrolling);
+               only sideways/diagonal scratch motions are captured by JS below. */
             touch-action: pan-y;
+        }
+
+        /* Once the card is fully scratched, free up the area completely so the
+           page scrolls through it exactly like any other section. */
+        .scratch-card-box.is-revealed,
+        .scratch-card-box.is-revealed .scratch-canvas {
+            touch-action: auto;
         }
 
         .scratch-date-reveal {
@@ -637,7 +647,8 @@
             background: #fff;
             border: 1px solid var(--border-gold);
             border-radius: 30px;
-            padding: 7px 18px;
+            padding: 12px 20px;
+            min-height: 44px;
             font-family: var(--font-headings);
             font-size: 0.7rem;
             letter-spacing: 2px;
@@ -917,190 +928,41 @@
             margin-top: 6px;
         }
 
-        /* --- MOBILE VIEWPORT OPTIMIZATIONS --- */
-        @media (max-width: 600px) {
-            .wrapper {
-                padding: 24px 14px 24px;
-            }
+        /* ============================================= */
+        /* --- MOBILE REFINEMENTS ---                    */
+        /* ============================================= */
 
-            .card-container, .event-card-minimal {
-                border-radius: 18px;
-                padding: 28px 16px;
-                margin-bottom: 22px;
-            }
+        /* Respect the home-indicator / notch area on modern phones so the
+           scroll cue, toast and bottom padding never sit under it. */
+        .scroll-down-cue {
+            bottom: max(30px, calc(14px + env(safe-area-inset-bottom, 0px)));
+        }
+        .toast-notify {
+            bottom: max(30px, calc(14px + env(safe-area-inset-bottom, 0px)));
+        }
+        .footer-minimal {
+            padding-bottom: max(60px, calc(30px + env(safe-area-inset-bottom, 0px)));
+        }
 
-            .card-container::before {
-                top: 5px;
-                left: 5px;
-                right: 5px;
-                bottom: 5px;
-                border-radius: 14px;
-            }
+        /* Compact phones (iPhone SE / small Android, ~360px and under):
+           trim spacing and a couple of oversized elements so nothing feels
+           cramped or clipped edge-to-edge. */
+        @media (max-width: 360px) {
+            .wrapper { padding: 32px 14px 14px; }
+            .card-container { padding: 28px 16px; }
+            .badge-pill { padding: 5px 14px; font-size: 0.62rem; letter-spacing: 2px; }
+            .portrait-arch-wrapper { width: clamp(190px, 62vw, 260px); height: clamp(270px, 86vw, 360px); }
+            .countdown-grid { gap: 6px; }
+            .countdown-cell { padding: 10px 3px 8px; }
+            .actions-stack { max-width: 100%; }
+            .scratch-card-box { width: 86vw; }
+        }
 
-            .bismillah-box {
-                max-width: 380px;
-                padding: 0 12px;
-            }
-
-            .revealed-names {
-                padding: 0 12px;
-            }
-
-            .revealed-names h1 {
-                font-size: clamp(2rem, 7.8vw, 3.4rem);
-                white-space: normal;
-                word-break: break-word;
-            }
-
-            .revealed-names .ampersand {
-                font-size: clamp(1.8rem, 6vw, 2.6rem);
-            }
-
-            .host-names {
-                font-size: 1.15rem;
-                letter-spacing: 1px;
-                line-height: 1.45;
-            }
-
-            .host-residence {
-                font-size: 0.82rem;
-            }
-
-            .invitation-quote {
-                font-size: 1.12rem;
-                line-height: 1.65;
-                margin: 20px auto;
-            }
-
-            .couple-name {
-                font-size: clamp(2.1rem, 7.6vw, 2.9rem);
-                word-break: break-word;
-            }
-
-            .lineage-info {
-                font-size: 0.82rem;
-                line-height: 1.55;
-            }
-
-            .with-connector {
-                margin: 16px 0;
-            }
-
-            .with-connector span {
-                font-size: 1.3rem;
-            }
-
-            .with-connector::before,
-            .with-connector::after {
-                width: 36px;
-            }
-
-            .portrait-arch-wrapper {
-                width: clamp(190px, 62vw, 250px);
-                height: clamp(270px, 86vw, 350px);
-                margin: 22px auto 16px;
-            }
-
-            .quran-minimal {
-                padding: 10px 8px;
-                margin: 4px 0 8px;
-            }
-
-            .quran-arabic-text {
-                font-size: 1.45rem;
-                line-height: 1.7;
-            }
-
-            .quran-translation {
-                font-size: 0.95rem;
-            }
-
-            .scratch-card-section {
-                margin: 24px 0;
-            }
-
-            .section-headline {
-                font-size: 1.95rem;
-                margin-bottom: 16px;
-            }
-
-            .scratch-card-box {
-                width: clamp(250px, 78vw, 310px);
-                border-radius: 18px;
-            }
-
-            .reveal-big-number {
-                font-size: 4.4rem;
-                margin: 4px 0;
-            }
-
-            .reveal-month-year {
-                font-size: 1.05rem;
-                letter-spacing: 2px;
-            }
-
-            .reveal-venue-short {
-                font-size: 0.76rem;
-                margin-top: 10px;
-            }
-
-            .countdown-wrap {
-                margin: 24px 0 28px;
-            }
-
-            .countdown-grid {
-                gap: 8px;
-                max-width: 360px;
-            }
-
-            .countdown-cell {
-                padding: 10px 4px 8px;
-                border-radius: 12px;
-            }
-
-            .countdown-cell .digit {
-                font-size: 1.8rem;
-            }
-
-            .countdown-cell .unit {
-                font-size: 0.58rem;
-                letter-spacing: 1px;
-                margin-top: 4px;
-            }
-
-            .event-title {
-                font-size: 2.1rem;
-                margin-bottom: 14px;
-            }
-
-            .event-schedule-block {
-                padding: 14px 10px;
-                margin-bottom: 16px;
-            }
-
-            .event-date-main {
-                font-size: 1.05rem;
-            }
-
-            .venue-name-block {
-                margin: 16px 0 22px;
-            }
-
-            .venue-title {
-                font-size: 1.25rem;
-            }
-
-            .actions-stack {
-                max-width: 100%;
-                gap: 10px;
-            }
-
-            .btn-modern {
-                padding: 12px 18px;
-                font-size: 0.74rem;
-                min-height: 48px;
-                letter-spacing: 1px;
-            }
+        /* Taller phones vs. small tablets (600px+ wide) get a touch more
+           breathing room instead of stretching the same tight mobile spacing. */
+        @media (min-width: 600px) {
+            .wrapper { max-width: 560px; }
+            .event-card-minimal, .card-container { padding-left: clamp(28px, 6vw, 48px); padding-right: clamp(28px, 6vw, 48px); }
         }
     </style>
 </head>
@@ -1557,10 +1419,10 @@
             .fromTo("#namesReveal",
                 { scale: 0.6, opacity: 0 },
                 { scale: 1, opacity: 1, ease: "power1.inOut" }, 0)
-            // Golden Butterfly flutters diagonally across with a gentle left tilt at the end
+            // Golden Butterfly flutters diagonally across
             .fromTo("#goldenButterfly",
-                { x: "-45vw", y: "40vh", scale: 0.4, rotation: 8, opacity: 0 },
-                { x: "45vw", y: "-40vh", scale: 1.3, rotation: -22, opacity: 1, ease: "sine.inOut" }, 0);
+                { x: "-45vw", y: "40vh", scale: 0.4, opacity: 0 },
+                { x: "45vw", y: "-40vh", scale: 1.3, opacity: 1, ease: "sine.inOut" }, 0);
 
         // --- 3. Smooth Scroll Entrance Reveals for Other Sections ---
         gsap.utils.toArray('.gs-reveal').forEach(function (elem) {
@@ -1677,6 +1539,7 @@
             function celebrate() {
                 if (revealed) return;
                 revealed = true;
+                card.classList.add('is-revealed');
                 gsap.to(canvas, {
                     opacity: 0, duration: 0.6, ease: "power2.out",
                     onComplete: () => { canvas.style.display = 'none'; }
@@ -1698,62 +1561,50 @@
                 return { x: cx - rect.left, y: cy - rect.top };
             }
 
-            let isTouchScratch = false;
-            let touchStartX = 0;
-            let touchStartY = 0;
-            let decidedGesture = false;
-
             canvas.addEventListener('mousedown', (e) => { isScratching = true; const p = getPos(e); scratch(p.x, p.y); });
             canvas.addEventListener('mousemove', (e) => { if (isScratching) { const p = getPos(e); scratch(p.x, p.y); } });
             window.addEventListener('mouseup', () => { isScratching = false; });
 
+            // Direction-aware touch handling: a mostly-vertical drag is treated
+            // as a request to scroll the page (and is left alone), while any
+            // sideways/diagonal drag is treated as scratching. This is what
+            // lets people scroll straight through the card instead of getting
+            // stuck on it.
+            let touchStartX = 0, touchStartY = 0, gesture = null; // null | 'scratch' | 'scroll'
+
             canvas.addEventListener('touchstart', (e) => {
-                if (!e.touches || e.touches.length === 0) return;
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-                decidedGesture = false;
-                isTouchScratch = false;
+                if (revealed) return;
+                const t = e.touches[0];
+                touchStartX = t.clientX;
+                touchStartY = t.clientY;
+                gesture = null;
+                isScratching = false;
             }, { passive: true });
 
             canvas.addEventListener('touchmove', (e) => {
-                if (revealed || !e.touches || e.touches.length === 0) return;
-                const curX = e.touches[0].clientX;
-                const curY = e.touches[0].clientY;
-                const dx = Math.abs(curX - touchStartX);
-                const dy = Math.abs(curY - touchStartY);
+                if (revealed) return;
+                const t = e.touches[0];
+                const dx = t.clientX - touchStartX;
+                const dy = t.clientY - touchStartY;
 
-                if (!decidedGesture) {
-                    if (dy > dx * 1.3 && dy > 8) {
-                        // User is scrolling vertically through the page
-                        decidedGesture = true;
-                        isTouchScratch = false;
-                        return;
-                    } else if (dx > 8 || dy > 8 || dx + dy > 12) {
-                        // User is intentionally scratching
-                        decidedGesture = true;
-                        isTouchScratch = true;
-                    }
+                if (gesture === null) {
+                    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return; // too small to tell yet
+                    gesture = Math.abs(dy) > Math.abs(dx) * 1.3 ? 'scroll' : 'scratch';
+                    if (gesture === 'scratch') isScratching = true;
                 }
 
-                if (isTouchScratch) {
-                    if (e.cancelable) e.preventDefault();
+                if (gesture === 'scratch') {
+                    e.preventDefault();
                     const p = getPos(e);
                     scratch(p.x, p.y);
                 }
+                // if gesture === 'scroll', do nothing — the browser scrolls natively
             }, { passive: false });
 
-            canvas.addEventListener('touchend', (e) => {
-                if (!decidedGesture && e.changedTouches && e.changedTouches.length > 0) {
-                    const rect = canvas.getBoundingClientRect();
-                    const p = {
-                        x: e.changedTouches[0].clientX - rect.left,
-                        y: e.changedTouches[0].clientY - rect.top
-                    };
-                    scratch(p.x, p.y);
-                }
-                isTouchScratch = false;
-                decidedGesture = false;
-            }, { passive: true });
+            canvas.addEventListener('touchend', () => {
+                isScratching = false;
+                gesture = null;
+            });
         })();
 
         // --- 5. Celebration Gold Confetti Burst ---
