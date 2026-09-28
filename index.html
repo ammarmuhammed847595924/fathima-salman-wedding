@@ -989,11 +989,11 @@
         /* --- INTRO SPLASH (calligraphy first) ---      */
         /* ============================================= */
         .intro-splash {
-            position: fixed; inset: 0; z-index: 9999;
-            display: none; flex-direction: column; align-items: center; justify-content: center;
-            background: radial-gradient(ellipse at 50% 42%, #1d1509 0%, #0b0805 58%, #000 100%);
-            cursor: pointer; touch-action: none; overscroll-behavior: contain;
-            -webkit-tap-highlight-color: transparent; outline: none;
+    position: fixed; inset: 0; z-index: 9999;
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--bg-page, #FAF8F5);
+    cursor: pointer; touch-action: none; overscroll-behavior: contain;
+    -webkit-tap-highlight-color: transparent; outline: none;
         }
         html.has-splash .intro-splash { display: flex; }
         html.splash-open, html.splash-open body { overflow: hidden; }
