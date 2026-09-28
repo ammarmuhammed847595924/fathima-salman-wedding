@@ -520,9 +520,9 @@
             font-weight: 400;
         }
 
-        .scratch-card-box {
+         .scratch-card-box {
             position: relative;
-            width: clamp(270px, 80vw, 360px);
+            width: clamp(280px, 86vw, 360px);
             margin: 0 auto;
             border-radius: 20px;
             overflow: hidden;
@@ -530,11 +530,8 @@
             border: 1px solid var(--border-gold);
             background: #fff;
             aspect-ratio: 3 / 3.8;
-            transition: box-shadow 0.3s ease;
-            /* Default: the card behaves like normal content, so the page
-               scrolls natively over it. Scratching is switched on by tapping
-               the card (see .scratch-active below). */
-            touch-action: auto;
+            /* Vertical swipes scroll the page; sideways/diagonal ones scratch */
+            touch-action: pan-y;
         }
 
         /* "Scratch mode": the card captures touches so scratching works in
@@ -640,7 +637,7 @@
             z-index: 2;
             cursor: pointer;
             border-radius: 20px;
-            touch-action: auto;
+            touch-action: pan-y;
         }
 
         .scratch-actions {
@@ -1406,11 +1403,10 @@
                 <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
             </div>
 
-            <div class="scratch-actions">
+                        <div class="scratch-actions">
                 <div class="scratch-hint-text" id="scratchHint">
-                    <span>👆 Swipe to scratch & reveal</span>
+                    <span>👆 Swipe sideways to scratch & reveal</span>
                 </div>
-                <button type="button" class="btn-scratch-done" id="scratchDoneBtn" hidden>Done scratching · scroll &darr;</button>
                 <button type="button" class="btn-tap-reveal" id="tapRevealBtn">
                     ✨ Or Tap to Reveal Date ✨
                 </button>
@@ -1602,17 +1598,15 @@
         });
 
         // --- 4. Reactive Scratch-to-Reveal Card ---
+               // --- 4. Reactive Scratch-to-Reveal Card ---
         (function initScratch() {
             const canvas = document.getElementById('scratchCanvas');
             const ctx = canvas.getContext('2d');
             const card = document.getElementById('scratchCard');
             const hint = document.getElementById('scratchHint');
-            const hintText = hint.querySelector('span');
             const tapBtn = document.getElementById('tapRevealBtn');
-            const doneBtn = document.getElementById('scratchDoneBtn');
             const isCoarse = window.matchMedia('(pointer: coarse)').matches;
             let revealed = false;
-            let armed = false;          // touch "scratch mode"
             let drawing = false;
             let last = null;
             let lastW = 0;
@@ -1676,34 +1670,6 @@
                 if (Math.round(card.getBoundingClientRect().width) !== lastW) initCanvas();
             });
 
-            /* ---------- hint / mode ---------- */
-            function updateHint() {
-                if (revealed) return;
-                if (!isCoarse) hintText.textContent = '\u{1F446} Click & drag to scratch';
-                else if (armed) hintText.textContent = '\u270B Scratch now \u00b7 tap outside the card to scroll';
-                else hintText.textContent = '\u{1F446} Tap the card, then scratch';
-                doneBtn.hidden = !(isCoarse && armed);
-            }
-            function setArmed(v) {
-                if (revealed) v = false;
-                armed = v;
-                card.classList.toggle('scratch-active', v);
-                updateHint();
-            }
-            updateHint();
-            doneBtn.addEventListener('click', () => setArmed(false));
-
-            // Leaving the card behind switches scratch mode off so scrolling is never trapped
-            if ('IntersectionObserver' in window) {
-                new IntersectionObserver((entries) => {
-                    entries.forEach(en => { if (!en.isIntersecting) setArmed(false); });
-                }, { threshold: 0.15 }).observe(card);
-            }
-            // A touch anywhere outside the card also exits scratch mode
-            document.addEventListener('touchstart', (e) => {
-                if (armed && !card.contains(e.target) && !doneBtn.contains(e.target)) setArmed(false);
-            }, { passive: true });
-
             /* ---------- drawing (continuous strokes, no gaps) ---------- */
             function scratchTo(x, y) {
                 if (revealed) return;
@@ -1733,7 +1699,7 @@
                 try {
                     const d = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
                     let clear = 0, sampled = 0;
-                    for (let i = 3; i < d.length; i += 16) {   // every 4th pixel
+                    for (let i = 3; i < d.length; i += 16) {
                         sampled++;
                         if (d[i] < 128) clear++;
                     }
@@ -1744,13 +1710,11 @@
             function celebrate() {
                 if (revealed) return;
                 revealed = true;
-                setArmed(false);
                 card.classList.add('is-revealed');
                 gsap.to(canvas, {
                     opacity: 0, duration: 0.6, ease: "power2.out",
                     onComplete: () => { canvas.style.display = 'none'; }
                 });
-                doneBtn.hidden = true;
                 gsap.to([hint, tapBtn], { opacity: 0, pointerEvents: 'none', duration: 0.25 });
                 launchConfetti();
                 gsap.fromTo(card,
@@ -1765,7 +1729,7 @@
                 return { x: clientX - r.left, y: clientY - r.top };
             }
 
-            /* ---------- mouse (desktop): always active ---------- */
+            /* ---------- mouse (desktop) ---------- */
             canvas.addEventListener('mousedown', (e) => {
                 if (Date.now() - lastTouchAt < 800) return;
                 drawing = true; last = null;
@@ -1778,42 +1742,47 @@
             window.addEventListener('mouseup', () => { drawing = false; last = null; checkReveal(); });
 
             /* ---------- touch ----------
-               Not armed: touches are left completely alone, so the page scrolls
-               natively over the card; a quick tap arms scratch mode.
-               Armed: the card captures touches -> easy scratching in any direction. */
-            let t0 = 0, sx = 0, sy = 0, moved = false;
+               Mostly-vertical swipe  -> page scrolls normally.
+               Sideways / diagonal    -> scratches the foil. */
+            let mode = null;   // null | 'scratch' | 'scroll'
+            let sx = 0, sy = 0;
+
             canvas.addEventListener('touchstart', (e) => {
                 if (revealed) return;
                 lastTouchAt = Date.now();
                 const t = e.touches[0];
-                t0 = Date.now(); sx = t.clientX; sy = t.clientY; moved = false;
-                if (armed) {
-                    e.preventDefault();
-                    drawing = true; last = null;
-                    const p = pos(t.clientX, t.clientY); scratchTo(p.x, p.y);
-                }
-            }, { passive: false });
+                sx = t.clientX; sy = t.clientY;
+                mode = null; last = null; drawing = false;
+            }, { passive: true });
 
             canvas.addEventListener('touchmove', (e) => {
-                if (revealed) return;
+                if (revealed || mode === 'scroll') return;
                 lastTouchAt = Date.now();
                 const t = e.touches[0];
-                if (armed) {
-                    e.preventDefault();
+                const dx = t.clientX - sx;
+                const dy = t.clientY - sy;
+
+                if (mode === null) {
+                    if (Math.max(Math.abs(dx), Math.abs(dy)) < 6) return;
+                    mode = Math.abs(dx) > Math.abs(dy) * 0.8 ? 'scratch' : 'scroll';
+                    if (mode === 'scroll') return;
+                    drawing = true; last = null;
+                    const p0 = pos(sx, sy); scratchTo(p0.x, p0.y);
+                }
+
+                if (mode === 'scratch') {
+                    if (e.cancelable) e.preventDefault();
                     const p = pos(t.clientX, t.clientY); scratchTo(p.x, p.y);
-                } else if (Math.abs(t.clientX - sx) > 8 || Math.abs(t.clientY - sy) > 8) {
-                    moved = true;       // it's a scroll, leave it to the browser
                 }
             }, { passive: false });
 
             function endTouch() {
                 lastTouchAt = Date.now();
-                if (!armed && !moved && !revealed && Date.now() - t0 < 500) setArmed(true);   // quick tap = arm
-                drawing = false; last = null;
+                drawing = false; last = null; mode = null;
                 checkReveal();
             }
             canvas.addEventListener('touchend', endTouch);
-            canvas.addEventListener('touchcancel', () => { drawing = false; last = null; });
+            canvas.addEventListener('touchcancel', endTouch);
         })();
 
         // --- 5. Celebration Gold Confetti Burst ---
