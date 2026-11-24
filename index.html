@@ -1740,7 +1740,7 @@
             /* ---------- drawing (continuous strokes, no gaps) ---------- */
             function scratchTo(x, y) {
                 if (revealed) return;
-                const radius = isCoarse ? 34 : 26;
+                const radius = isCoarse ? 48 : 36;
                 ctx.save();
                 ctx.globalCompositeOperation = 'destination-out';
                 ctx.lineCap = 'round';
@@ -1770,7 +1770,7 @@
                         sampled++;
                         if (d[i] < 128) clear++;
                     }
-                    if (clear / sampled > 0.17) celebrate();
+                    if (clear / sampled > 0.10) celebrate();
                 } catch (e) {}
             }
 
